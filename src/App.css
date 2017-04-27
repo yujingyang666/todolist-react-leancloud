@@ -1,0 +1,53 @@
+.App {
+  text-align: center;
+  min-width:32em;
+  box-shadow: 0 0 1em hsla(0,0%,0%,0.15);
+  background-color: lightyellow;
+  margin-top: 5em;
+  padding-top: 2em;
+  padding-bottom: 2em;
+
+}
+
+.inputWrapper input{
+  width: 25em;
+  height: 1.5em;
+  padding: 5px;
+  margin-bottom: 1em;
+}
+.lists {
+  display: block;
+  width: 25em;
+  margin: 0 auto;
+}
+
+.lists li {
+  text-align: left;
+  display: block;
+  background-color: #EEE;
+  list-style: none;
+  margin: 10px;
+  min-height: 2em;
+  line-height: 2em;
+  padding: 5px;
+  padding-left: 40px;
+  padding-right: 40px;
+  position: relative;
+  border-radius: 2px;
+  box-shadow: 0 0 5px hsla(0,0%,0%,0.2);
+}
+
+.lists li input{
+  position: absolute;
+  width: 1.2em;
+  height: 1.2em;
+  top:1em;
+  left: 1em;
+  word-break:break-all
+}
+
+.lists li button{
+  position: absolute;
+  top:0.75em;
+  right:1em;
+}
