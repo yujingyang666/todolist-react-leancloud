@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './UserDialog.css'
 import {signUpApi,signInApi} from './leanCloud'
+import {error} from './error'
 
 class UserDialog extends Component{
 
@@ -26,17 +27,17 @@ class UserDialog extends Component{
       let success = (user)=>{
         this.props.onSignUp(user)
       }
-      let error = (error)=>{
-        //alert(error.code)
-        switch(error.code){
-          case 202:
-          alert('用户名已存在')
-          break
-          default:
-          alert(error)
-          break
-        }
-      }
+      // let error = (error)=>{
+      //   //alert(error.code)
+      //   switch(error.code){
+      //     case 202:
+      //     alert('用户名已存在')
+      //     break
+      //     default:
+      //     alert(error)
+      //     break
+      //   }
+      // }
       signUpApi(username, password, success, error)
     }
     signIn(e){
@@ -45,20 +46,20 @@ class UserDialog extends Component{
       let success = (user)=>{
         this.props.onSignIn(user)
       }
-      let error = (error)=>{
-        //alert(error)
-        switch(error.code){
-          case 210:
-          alert('用户名与密码不匹配')
-          break
-          case 211:
-          alert('用户名不存在')
-          break
-          default:
-          alert(error)
-          break
-        }
-      }
+      // let error = (error)=>{
+      //   //alert(error)
+      //   switch(error.code){
+      //     case 210:
+      //     alert('用户名与密码不匹配')
+      //     break
+      //     case 211:
+      //     alert('用户名不存在')
+      //     break
+      //     default:
+      //     alert(error)
+      //     break
+      //   }
+      // }
       signInApi(username, password, success, error)
     }
     changeFormData(key,e){
