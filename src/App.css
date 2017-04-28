@@ -51,3 +51,13 @@
   top:0.75em;
   right:1em;
 }
+
+h1 button{
+    margin-left: 1em;
+    padding: 0.1em; 
+    width: 3em;
+    background-color: lightgreen;
+    border: 0px;
+    color: #FFF;
+    cursor:pointer
+}

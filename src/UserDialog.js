@@ -14,13 +14,14 @@ class UserDialog extends Component{
         }
       }
     }
-    switch(e){
+    onChange(e){
       this.setState({
         selected: e.target.value
       })
     }
      signUp(e){
       e.preventDefault()
+      console.log('注册了')
       let {username, password} = this.state.formData
       let success = (user)=>{
         this.props.onSignUp(user)
@@ -107,10 +108,10 @@ class UserDialog extends Component{
              <nav >
               <label><input type="radio"  value="signUp" 
                       checked={this.state.selected === 'signUp'}
-                      onChange={this.switch.bind(this)}/> 注册</label>
+                      onChange={this.onChange.bind(this)}/> 注册</label>
               <label><input type="radio"  value="signIn" 
                       checked={this.state.selected === 'signIn'}
-                      onChange={this.switch.bind(this)}/> 登录</label>
+                      onChange={this.onChange.bind(this)}/> 登录</label>
            </nav>
            <div className="panes">
              {this.state.selected === 'signUp' ? signUpFrom:null}

@@ -24,13 +24,13 @@ export function signUpApi(username, password, successFn, errorFn){  //注册
   });
 }
 
-export function signInApi(username, password, successFn, errorFn){
+export function signInApi(username, password, successFn, errorFn){ //登录
   AV.User.logIn(username, password).then(function (loginedUser) {
     let user = getUserFromAVUser(loginedUser)
     console.log('登录成功')
       successFn(user)
   }, function (error) {
-    errorFn(error)
+     errorFn(error)
   });
 }
 
@@ -48,7 +48,7 @@ export function getCurrentUser(){   //从缓存里读取上次登录信息
      return getUserFromAVUser(user)
    }else{
      return null
-   }
+   }  
 }
 
 export function signOut(){
