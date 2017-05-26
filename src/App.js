@@ -181,7 +181,6 @@ class App extends Component {
   }
 //查询当前用户是否存在于leancloud，存在则获取保存的数据内容
 fetchTodos(){
-  console.log("刷新"+this.state)
     if(this.state.user){
     var query = new AV.Query('Todoslist');
     query.find()
