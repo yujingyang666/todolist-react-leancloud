@@ -7,14 +7,14 @@ AV.init({
   appKey: APP_KEY
 });
 export default AV 
-
-export function signUpApi(username, password, successFn, errorFn){  //注册
+export function signUpApi(email,username, password, successFn, errorFn){  //注册
   var user = new AV.User();
   // 设置用户名
   user.setUsername(username);
   // 设置密码
   user.setPassword(password);
-  
+  user.setEmail(email);
+  //设置邮箱
   user.signUp().then(function (loginedUser) { //注册成功返回当前用户信息
       let user = getUserFromAVUser(loginedUser)
       console.log('注册成功')
@@ -54,4 +54,12 @@ export function getCurrentUser(){   //从缓存里读取上次登录信息
 export function signOut(){
    AV.User.logOut()
    return undefined
+}
+
+export function sendPasswordResetEmail(email,successFn,errorFn){
+    AV.User.requestPasswordReset(email).then(function (success) {
+      successFn.call() 
+  }, function (error) {
+     errorFn.call(null, error)
+  });
 }

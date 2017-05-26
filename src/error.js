@@ -18,8 +18,9 @@ export function error(error){
           case 217:
           alert('无效的用户名，不允许空白用户名')
           break
-          case 217:
+          case 218:
           alert('无效的密码，不允许空白密码')
+          break
           case 502:
           alert('服务器维护中')
           break

@@ -6,7 +6,6 @@ import 'normalize.css'
 import UserDialog from './UserDialog'
 import AV,{getCurrentUser,signOut} from './leanCloud'
 
-
 class App extends Component {
   constructor(props){
      super(props)
@@ -17,7 +16,16 @@ class App extends Component {
      }
   }
   render() {
-    let todos=this.state.todoList.filter((item)=>!item.deleted).map((item,index)=>{  //把标记为删除的list筛选掉，剩下的给todos,箭头函数里this值为外面传入值，不用hackthis
+    let todos=this.state.todoList.filter((item)=>item.status!=="completed" & !item.deleted) .map((item,index)=>{  //把标记为删除list筛选掉和，剩下的给todos,箭头函数里this值为外面传入值，不用hackthis
+        return (
+            <li key={index}> 
+            <TodoItem todo={item}
+            onToggle={this.toggle.bind(this)}
+            onDel={this.del.bind(this)}/>
+            </li>
+      )
+    })
+    let completeds=this.state.todoList.filter((item)=>item.status==="completed" &!item.deleted) .map((item,index)=>{  //把标记为删除和未完成的的list筛选掉，剩下的给todos,箭头函数里this值为外面传入值，不用hackthis
         return (
             <li key={index}> 
             <TodoItem todo={item}
@@ -37,8 +45,13 @@ class App extends Component {
           onChange={this.changeTitle.bind(this)} //2、TodoInput的onChange触发时传递执行这里的onChange里的值
           onSub={this.addTodo.bind(this)} />
         </div>
+        {todos.length>0 ? <div><span>进行中</span><button onClick={this.cleartodos.bind(this)}>清空</button></div> : null} 
         <ul className='lists'>
           {todos}
+        </ul>
+        {completeds.length>0 ? <div><span>已完成</span><button onClick={this.clearcompleteds.bind(this)}>清空</button></div> : null} 
+        <ul className='lists' >
+          {completeds}
         </ul>
         {this.state.user.id ? null : <UserDialog onSignUp={this.onSignUpOronSignIn.bind(this)} onSignIn={this.onSignUpOronSignIn.bind(this)}/> }
       </div>
@@ -50,8 +63,8 @@ class App extends Component {
      console.log('onSignUpOronSignIn:'+user)
      let stateCopy = JSON.parse(JSON.stringify(this.state))
      stateCopy.user = user
-     this.setState(stateCopy)
-     this.fetchTodos()
+     this.setState(stateCopy)  
+     this.fetchTodos() //执行获取数据
   }
 
 
@@ -64,7 +77,7 @@ class App extends Component {
     this.setState(stateCopy) 
   }
   componentWillMount(){
-    this.fetchTodos()
+    this.fetchTodos() //执行获取数据
   }
   componentDidUpdate(){
     
@@ -83,15 +96,15 @@ class App extends Component {
       this.state.todoList.push({
         // id:idMarker(), 
         title:e.target.value,
-        status:null,
-        deleted:false
+        status:null, //todo的完成状态
+        deleted:false //todo的是否删除状态
       })
       this.setState({
         newTodo:'',  //把newTodo清零  newTodo -> TodoInput content -> TodoInput.js的value
         todoList:this.state.todoList
       })
     }
-    this.saveOrUpdateTodos()
+    this.saveOrUpdateTodos() //在新增加todo时，执行更新或者保存数据
   }
 
   toggle(e,todo){
@@ -99,23 +112,44 @@ class App extends Component {
       todo.status='completed'
     }else{todo.status=''}
     this.setState(this.state) 
-   this.saveOrUpdateTodos()
+   this.saveOrUpdateTodos() //在改变todo完成状态时，执行更新或者保存数据
   }
     
   del(e,todo){
     todo.deleted=true
     this.setState(this.state)
+    this.saveOrUpdateTodos() //在删除todo时，执行更新或者保存数据
+  }
+
+  cleartodos(){
+    for(let i=0;i<this.state.todoList.length;i++){
+      if(this.state.todoList[i].status!=="completed"){
+        this.state.todoList[i].deleted=true
+      }
+    }
+    this.setState(this.state)
     this.saveOrUpdateTodos()
   }
 
+  clearcompleteds(){
+    for(let i=0;i<this.state.todoList.length;i++){
+      if(this.state.todoList[i].status==="completed"){
+        this.state.todoList[i].deleted=true
+      }
+    }
+    this.setState(this.state)
+    this.saveOrUpdateTodos()
+  }
+
+//================================================================================================
    //保存数据
   saveTodos(){
     let dataString = JSON.stringify(this.state.todoList)
-    var  AVTodos = AV.Object.extend('AllTodos');
+    var  AVTodos = AV.Object.extend('Todoslist');
     var avTodos = new AVTodos();
     var acl = new AV.ACL();
-    acl.setReadAccess(AV.User.current(),true)
-    acl.setWriteAccess(AV.User.current(),true)
+    acl.setReadAccess(AV.User.current(),true) //设置该数据只有该user可读
+    acl.setWriteAccess(AV.User.current(),true) //设置该数据只有该user可写
     avTodos.set('content',dataString);
     avTodos.setACL(acl)//设置访问控制
     avTodos.save().then((todo)=>{
@@ -131,7 +165,7 @@ class App extends Component {
  //更新数据
   updataTodos(){
       let dataString = JSON.stringify(this.state.todoList)
-      let avTodos = AV.Object.createWithoutData('AllTodos',this.state.todoList.id)
+      let avTodos = AV.Object.createWithoutData('Todoslist',this.state.todoList.id)
       avTodos.set('content',dataString)
       avTodos.save().then(()=>{
         console.log('更新成功')
@@ -139,7 +173,7 @@ class App extends Component {
     }
 //更新或者保存数据，分别在数据发生改变时调用，数据存在就更新，数据不存在就保存
   saveOrUpdateTodos(){
-    if(this.state.todoList.id){
+    if(this.state.todoList.id){ //判断todoList是否存在由leancloud获取的id
       this.updataTodos()
     }else{
       this.saveTodos()
@@ -147,9 +181,9 @@ class App extends Component {
   }
 //查询当前用户是否存在于leancloud，存在则获取保存的数据内容
 fetchTodos(){
-  console.log(this.state)
+  console.log("刷新"+this.state)
     if(this.state.user){
-    var query = new AV.Query('AllTodos');
+    var query = new AV.Query('Todoslist');
     query.find()
       .then((todos)=>{
         let avAlltodos = todos[0]
@@ -163,7 +197,12 @@ fetchTodos(){
       })
     }
   }
+
+//================================================================================================
+
 }
 
 
 export default App;
+
+

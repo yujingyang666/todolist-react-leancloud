@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://yujingyang666.github.io/todolist-react-leancloud/build",
   "dependencies": {
+    "leancloud-storage": "^2.2.1",
     "normalize.css": "^6.0.0",
     "react": "^15.5.3",
     "react-dom": "^15.5.3"
