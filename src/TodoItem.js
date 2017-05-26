@@ -7,7 +7,10 @@ class TodoItem extends Component {
             <input type="checkbox" 
             checked={this.props.todo.status==='completed'}
             onChange={this.toggle.bind(this)}/>
-            {this.props.todo.title}
+            <input type="text" 
+            value={this.props.todo.title} data-value={this.props.todo.title} onChange={this.props.onChange}/>
+            {/*onKeyPress={this.enter.bind(this)}*/}
+            
             <button onClick={this.del.bind(this)}>删除</button>
         </div>
         )
@@ -18,6 +21,11 @@ class TodoItem extends Component {
     toggle(e){
         this.props.onToggle(e,this.props.todo)
     }
+    // enter(e){
+    //     if(e.key ==='Enter'){
+    //         this.props.Enter(e) 
+    //     }
+    // }
   
 }
 

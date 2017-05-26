@@ -37,7 +37,7 @@
   box-shadow: 0 0 5px hsla(0,0%,0%,0.2);
 }
 
-.lists li input{
+.lists li input[type="checkbox"]{
   position: absolute;
   width: 1.2em;
   height: 1.2em;

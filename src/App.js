@@ -16,21 +16,26 @@ class App extends Component {
      }
   }
   render() {
-    let todos=this.state.todoList.filter((item)=>item.status!=="completed" & !item.deleted) .map((item,index)=>{  //把标记为删除list筛选掉和，剩下的给todos,箭头函数里this值为外面传入值，不用hackthis
+    let todos = this.state.todoList.filter((item)=>item.status!=="completed" & !item.deleted) .map((item,index)=>{  //把标记为删除list筛选掉和，剩下的给todos,箭头函数里this值为外面传入值，不用hackthis
         return (
             <li key={index}> 
             <TodoItem todo={item}
             onToggle={this.toggle.bind(this)}
-            onDel={this.del.bind(this)}/>
+            onDel={this.del.bind(this)}
+            onChange={this.changeItem.bind(this)}
+            />
+            
             </li>
       )
     })
-    let completeds=this.state.todoList.filter((item)=>item.status==="completed" &!item.deleted) .map((item,index)=>{  //把标记为删除和未完成的的list筛选掉，剩下的给todos,箭头函数里this值为外面传入值，不用hackthis
+    let completeds = this.state.todoList.filter((item)=>item.status==="completed" &!item.deleted) .map((item,index)=>{  //把标记为删除和未完成的的list筛选掉，剩下的给todos,箭头函数里this值为外面传入值，不用hackthis
         return (
             <li key={index}> 
             <TodoItem todo={item}
             onToggle={this.toggle.bind(this)}
-            onDel={this.del.bind(this)}/>
+            onDel={this.del.bind(this)}
+            onChange={this.changeItem.bind(this)}
+            />
             </li>
       )
     })
@@ -89,6 +94,21 @@ class App extends Component {
           // todoList:this.state.todoList
         })
         // console.log(this.state.todoList)
+  }
+  changeItem(e){
+    let dataKey=e.target.getAttribute("data-value")
+    let id=this.state.todoList.id
+    let stateCopy = JSON.parse(JSON.stringify(this.state))
+    for(let key in stateCopy.todoList){
+      if(stateCopy.todoList[key].title===dataKey){
+        stateCopy.todoList[key].title=e.target.value
+        console.log("现在的title:"+stateCopy.todoList[key].title)
+      }
+    }
+    stateCopy.todoList.id=id
+    this.state=stateCopy
+    this.setState(this.state)
+    this.updataTodos()
   }
 
    addTodo(e){  //8、onSub触发时，执行
@@ -168,7 +188,7 @@ class App extends Component {
       let avTodos = AV.Object.createWithoutData('Todoslist',this.state.todoList.id)
       avTodos.set('content',dataString)
       avTodos.save().then(()=>{
-        console.log('更新成功')
+        console.log('更新成功666')
       })
     }
 //更新或者保存数据，分别在数据发生改变时调用，数据存在就更新，数据不存在就保存
