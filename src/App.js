@@ -97,15 +97,14 @@ class App extends Component {
   }
   changeItem(e){
     let dataKey=e.target.getAttribute("data-value")
-    let id=this.state.todoList.id
     let stateCopy = JSON.parse(JSON.stringify(this.state))
+    let copy=JSON.stringify(this.state)
     for(let key in stateCopy.todoList){
       if(stateCopy.todoList[key].title===dataKey){
         stateCopy.todoList[key].title=e.target.value
-        console.log("现在的title:"+stateCopy.todoList[key].title)
       }
     }
-    stateCopy.todoList.id=id
+    stateCopy.todoList.id=this.state.todoList.id
     this.state=stateCopy
     this.setState(this.state)
     this.updataTodos()
@@ -188,7 +187,7 @@ class App extends Component {
       let avTodos = AV.Object.createWithoutData('Todoslist',this.state.todoList.id)
       avTodos.set('content',dataString)
       avTodos.save().then(()=>{
-        console.log('更新成功666')
+       
       })
     }
 //更新或者保存数据，分别在数据发生改变时调用，数据存在就更新，数据不存在就保存
@@ -223,5 +222,3 @@ fetchTodos(){
 
 
 export default App;
-
-
