@@ -5,7 +5,8 @@ import TodoItem from './TodoItem'
 import 'normalize.css'
 import UserDialog from './UserDialog'
 import AV,{getCurrentUser,signOut} from './leanCloud'
-
+import initReactFastclick from 'react-fastclick';
+initReactFastclick();
 class App extends Component {
   constructor(props){
      super(props)
@@ -16,9 +17,9 @@ class App extends Component {
      }
   }
   render() {
-    let todos = this.state.todoList.filter((item)=>item.status!=="completed" & !item.deleted) .map((item,index)=>{  //把标记为删除list筛选掉和，剩下的给todos,箭头函数里this值为外面传入值，不用hackthis
+    let todos = this.state.todoList.filter((item)=>item.status!=="completed" & !item.deleted & item.title.length>0).map((item,index)=>{  //把标记为删除list筛选掉和，剩下的给todos,箭头函数里this值为外面传入值，不用hackthis
         return (
-            <li key={index}> 
+            <li className="todo" key={index}> 
             <TodoItem todo={item}
             onToggle={this.toggle.bind(this)}
             onDel={this.del.bind(this)}
@@ -28,9 +29,9 @@ class App extends Component {
             </li>
       )
     })
-    let completeds = this.state.todoList.filter((item)=>item.status==="completed" &!item.deleted) .map((item,index)=>{  //把标记为删除和未完成的的list筛选掉，剩下的给todos,箭头函数里this值为外面传入值，不用hackthis
+    let completeds = this.state.todoList.filter((item)=>item.status==="completed" &!item.deleted & item.title.length>0).map((item,index)=>{  //把标记为删除和未完成的的list筛选掉，剩下的给todos,箭头函数里this值为外面传入值，不用hackthis
         return (
-            <li key={index}> 
+            <li className="completed" key={index}>
             <TodoItem todo={item}
             onToggle={this.toggle.bind(this)}
             onDel={this.del.bind(this)}
@@ -42,7 +43,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>{this.state.user.username || '我'}的待办
-          {this.state.user.id ? <button onClick={this.signOut.bind(this)}>登出</button> : null}
+          {this.state.user.id ? <button onClick={this.signOut.bind(this)}><i className="iconfont icon-send"></i>登出</button> : null}
         </h1>
         <div className='inputWrapper'>
           <TodoInput 
@@ -50,11 +51,11 @@ class App extends Component {
           onChange={this.changeTitle.bind(this)} //2、TodoInput的onChange触发时传递执行这里的onChange里的值
           onSub={this.addTodo.bind(this)} />
         </div>
-        {todos.length>0 ? <div><span>进行中</span><button onClick={this.cleartodos.bind(this)}>清空</button></div> : null} 
+        {todos.length>0 ? <div><span>进行中</span><button onClick={this.cleartodos.bind(this)}><i className="iconfont icon-qingchu"></i></button></div> : null} 
         <ul className='lists'>
           {todos}
         </ul>
-        {completeds.length>0 ? <div><span>已完成</span><button onClick={this.clearcompleteds.bind(this)}>清空</button></div> : null} 
+        {completeds.length>0 ? <div><span>已完成</span><button onClick={this.clearcompleteds.bind(this)}><i className="iconfont icon-qingchu"></i></button></div> : null} 
         <ul className='lists' >
           {completeds}
         </ul>
@@ -83,6 +84,8 @@ class App extends Component {
   }
   componentWillMount(){
     this.fetchTodos() //执行获取数据
+    initReactFastclick();
+    
   }
   componentDidUpdate(){
     
@@ -96,11 +99,10 @@ class App extends Component {
         // console.log(this.state.todoList)
   }
   changeItem(e){
-    let dataKey=e.target.getAttribute("data-value")
+    let dataValue=e.target.getAttribute("data-value")
     let stateCopy = JSON.parse(JSON.stringify(this.state))
-    let copy=JSON.stringify(this.state)
     for(let key in stateCopy.todoList){
-      if(stateCopy.todoList[key].title===dataKey){
+      if(stateCopy.todoList[key].title===dataValue){
         stateCopy.todoList[key].title=e.target.value
       }
     }

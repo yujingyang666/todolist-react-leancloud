@@ -9,9 +9,9 @@ class TodoItem extends Component {
             onChange={this.toggle.bind(this)}/>
             <input type="text" 
             value={this.props.todo.title} data-value={this.props.todo.title} onChange={this.props.onChange}/>
-            {/*onKeyPress={this.enter.bind(this)}*/}
+           
             
-            <button onClick={this.del.bind(this)}>删除</button>
+            <button onClick={this.del.bind(this)}><i className="iconfont icon-guanbi2fill"></i></button>
         </div>
         )
     }

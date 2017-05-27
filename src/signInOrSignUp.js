@@ -21,9 +21,9 @@ export default class SignInOrSignUp extends Component {
             <div className="signInOrSignUp">
           <nav >
             <label><input type="radio" value="signUp" checked={this.state.selected === 'signUp'} onChange={this.ontab.bind(this)}/>
-              注册</label>
+              <i className="iconfont icon-addpeople_fill"></i>注册</label>
             <label><input type="radio" value="signIn" checked={this.state.selected === 'signIn'} onChange={this.ontab.bind(this)}/>
-              登录</label>
+              <i className="iconfont icon-addressbook_fill"></i>登录</label>
           </nav>
           <div className="panes">
             {this.state.selected === 'signUp' ? 

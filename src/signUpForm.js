@@ -6,21 +6,21 @@ export default class SignUpform extends Component {
             <form className="signUp" onSubmit={this.props.onSubmit}>
         {/* 注册*/}
         <div className="row">
-           <label>邮箱</label>
+           <label><i className="iconfont icon-mail_fill"></i>邮箱</label>
           <input
             type="text"
             value={this.props.formData.email}
             onChange={this.props.onChange.bind(null, 'email')}/>
         </div>
         <div className="row">
-          <label>用户名</label>
+          <label><i className="iconfont icon-wode"></i>用户名</label>
           <input
             type="text"
             value={this.props.formData.username}
             onChange={this.props.onChange.bind(null, 'username')}/>
         </div>
         <div className="row">
-          <label>密码</label>
+          <label><i className="iconfont icon-unlock"></i>密码</label>
           <input
             type="password"
             value={this.props.formData.password}
