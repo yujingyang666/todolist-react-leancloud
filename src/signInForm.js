@@ -8,6 +8,7 @@ export default class SignInform extends Component {
           <label><i className="iconfont icon-wode"></i>用户名</label>
           <input
             type="text"
+            placeholder="username"
             value={this.props.formData.username}
             onChange={this.props.onChange.bind(null, 'username')}/>
         </div>
@@ -15,6 +16,7 @@ export default class SignInform extends Component {
           <label><i className="iconfont icon-unlock"></i>密码</label>
           <input
              type="password"
+             placeholder="password"
             value={this.props.formData.password}
             onChange={this.props.onChange.bind(null, 'password')}/>
         </div>

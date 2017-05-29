@@ -42,20 +42,21 @@ class App extends Component {
     })
     return (
       <div className="App">
-        <h1>{this.state.user.username || '我'}的待办
-          {this.state.user.id ? <button onClick={this.signOut.bind(this)}><i className="iconfont icon-send"></i>登出</button> : null}
-        </h1>
+        <nav className="header">
+          <h1>{this.state.user.username || '我'}的备忘录</h1>
+          <a onClick={this.signOut.bind(this)}><i className="iconfont icon-send"></i>登出</a>
+        </nav>
         <div className='inputWrapper'>
           <TodoInput 
           content={this.state.newTodo}  //4、newTodo的值改变从而改变content的值
           onChange={this.changeTitle.bind(this)} //2、TodoInput的onChange触发时传递执行这里的onChange里的值
           onSub={this.addTodo.bind(this)} />
         </div>
-        {todos.length>0 ? <div><span>进行中</span><button onClick={this.cleartodos.bind(this)}><i className="iconfont icon-qingchu"></i></button></div> : null} 
+        {todos.length>0 ? <div className="condition"><div><span>进行中</span><i className="iconfont icon-qingchu" onClick={this.cleartodos.bind(this)}></i></div></div> : null} 
         <ul className='lists'>
           {todos}
         </ul>
-        {completeds.length>0 ? <div><span>已完成</span><button onClick={this.clearcompleteds.bind(this)}><i className="iconfont icon-qingchu"></i></button></div> : null} 
+        {completeds.length>0 ? <div className="condition"><div><span>已完成</span><i className="iconfont icon-qingchu" onClick={this.clearcompleteds.bind(this)}></i></div></div> : null} 
         <ul className='lists' >
           {completeds}
         </ul>

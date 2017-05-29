@@ -1,63 +1,123 @@
-.UserDialog-Wrapper{
+.UserDialog-Wrapper {
     position: fixed;
     background: #FFF;
-    top:50%;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
-    box-shadow: 0px 0px 0px 2000px lightseagreen;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 0px 0px 2000px #EEE;
     width: 25em;
-    height: 30em;
-    color: lightseagreen;
-    border-radius: 3px;
+    color: #1196EE;
 }
 
-.UserDialog{
-    box-shadow: 0 0 1em hsla(0,0%,0%,0.15);
+@media (max-width:1000px) {
+    .UserDialog-Wrapper {
+        width: 100vw;
+        height: 100vh;
+        box-shadow: 0px 0px 0px 0px #EEE;
+    }
+}
+
+.UserDialog {
+    box-shadow: 0 0 1em hsla(0, 0%, 0%, 0.15);
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    align-items:center;
-    flex-direction:column;
+    flex-direction: column;
     width: 100%;
     height: 100%;
 }
-nav{
-    width:20em;
-    margin: 1.5em;
+
+.UserDialog nav {
+    display: flex;
+    width: 100%;
 }
-nav>label{
+
+.UserDialog nav input {
+    display: none;
+}
+
+.UserDialog nav label {
+    text-align: center;
+    width: 50%;
+    height: 100%;
     padding: 1em;
+    background: #bbb;
+    display: inline-block;
+    color: #FFF;
+    font-size: 1.2em;
 }
-.row{    
+
+nav label>i {
+    margin-right: 5px;
+}
+
+nav input[type="radio"]:checked+label {
+    background: linear-gradient(to bottom, #1196EE, #1A6BE6);
+}
+
+.panes {
+    padding: 2em;
     display: flex;
-    justify-content: space-between;
-    align-items:center;
+}
+
+.panes>.signIn,
+.signUp,
+.forgotPassword {
+    width: 100%;
+    transition: 0.5s;
+}
+
+.row {
+    display: flex;
+    width: 100%;
     margin-bottom: 1em;
-    width: 15em;
+    flex-wrap: wrap;
 }
 
-.row input{
-    border: 0px;
-    padding: 0.5em;
-    background-color: lightgreen;
-    color: #FFF;
-}
-.actions{
-    display: flex;
-    justify-content: center;
+.row label {
+    text-align: left;
+    width: 100%;
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
 }
 
-.row button{
-    width: 4em;
-    background: lightseagreen;
-    padding: 0.5em;
+.row label i {
+    color: #bbb;
+    margin-right: 5px;
+}
+
+.row input {
+    width: 100%;
+    height: 2em;
+    font-size: 1em;
+    line-height: 1em;
+    outline: none;
+    border: 0px;
+    border-bottom: 1px solid #DDD;
+    transition: 0.5s;
+    background-color: transparent;
+}
+
+.row input:focus {
+    border-bottom: 1px solid #1196EE;
+}
+
+.row button {
+    margin: 0.5em 0;
+    background: linear-gradient(to bottom, #1196EE, #1A6BE6);
     border: 0px;
     color: #FFF;
+    width: 100%;
+    font-size: 1.1em;
+    line-height: 2.5em;
     border-radius: 3px;
-    cursor:pointer;
-    transition: all 0.5s;
 }
 
-.row button:hover{
-    background-color: lightgreen;
+.row a {
+    text-decoration: none;
+    color: #1196EE;
+}
+
+.forgotPassword nav label {
+    width: 100%;
+    background: linear-gradient(to bottom, #1196EE, #1A6BE6);
 }

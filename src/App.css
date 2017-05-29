@@ -1,67 +1,130 @@
 .App {
-  text-align: center;
-  min-width:32em;
-  box-shadow: 0 0 1em hsla(0,0%,0%,0.15);
-  background-color: lightyellow;
-  margin-top: 5em;
-  padding-top: 2em;
+  /*min-width:32em;*/
+  box-shadow: 0 0 1em hsla(0, 0%, 0%, 0.15);
+  background-color: #FFF;
+  margin-top: 3em;
   padding-bottom: 2em;
-
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction:column;
+  width: 800px;
 }
 
-.inputWrapper input{
-  width: 25em;
-  height: 1.5em;
-  padding: 5px;
-  margin-bottom: 1em;
+@media (max-width:1000px) {
+  .App {
+    width: 100vw;
+    height: 100vh;
+    margin-top: 0em;
+  }
+}
+
+@font-face {
+  font-family: 'iconfont';
+  src: url('../public/icon/iconfont.eot');
+  src: url('../public/icon/iconfont.eot?#iefix') format('embedded-opentype'), url('../public/icon/iconfont.woff') format('woff'), url('../public/icon/iconfont.ttf') format('truetype'), url('../public/icon/iconfont.svg#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.App .header {
+  display: flex;  
+  width: 100%;
+  background: linear-gradient(to bottom, #1196EE, #1A6BE6);
+  padding: 1.5em 1em;
+  justify-content: space-between;
+  align-items:flex-end;
+}
+.App .header h1{
+  font-size: 1.6em;
+  color: #FFF;
+  font-weight: normal;
+  margin: 0;
+}
+.App .header a{
+  color: #FFF;
+  display: inline-block;
+  cursor:pointer;
+  font-size:1em;
+  
+}
+.App .header a i{
+  margin-right: 3px;
+  vertical-align:text-bottom;
+}
+
+.inputWrapper {
+  display: flex;
+  width: 100%;
+  padding: 10px;
+}
+
+.inputWrapper input {
+  height: 3em;
+  flex-grow: 1;
+  padding: 0.5em;
+  outline: none;
+  border:1px solid #1196EE;
+}
+.condition{
+  width: 100%;
+  padding: 10px;
+}
+.condition div{
+  display: flex;
+  justify-content: space-between;
+  border-bottom:1px solid #CCC;
+  padding: 0 0.5em;
+  padding-bottom: 0.5em;
+  align-items: flex-end;
+}
+
+.condition div span{
+  font-size: 1.2em;
+  color: #888;
+}
+.condition div i{
+  color: lightgreen;
+  
 }
 .lists {
-  display: block;
-  width: 25em;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
   margin: 0 auto;
-}
-
-.lists li {
-  text-align: left;
-  display: block;
-  background-color: #EEE;
+  padding: 10px;
   list-style: none;
-  margin: 10px;
-  min-height: 2em;
-  line-height: 2em;
-  padding: 5px;
-  padding-left: 40px;
-  padding-right: 40px;
-  position: relative;
-  border-radius: 2px;
-  box-shadow: 0 0 5px hsla(0,0%,0%,0.2);
+}
+.lists li{
+  flex-grow: 1;
+  margin-bottom: 0.5em;
+  background-color: #FFFACD;
+}
+.lists li div{
+  padding: 0 0.5em;
+  display: flex;
+  height: 3em;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 600px;
+}
+.lists li div input[type="text"]{
+  flex-grow: 1;
+  padding:0 0.5em;
+  border:0px;
+  font-size: 16px;
+  background: transparent;
+  outline: none;
 }
 
-.lists li input[type="checkbox"]{
-  position: absolute;
-  width: 1.2em;
-  height: 1.2em;
-  top:1em;
-  left: 1em;
-  word-break:break-all
+.lists li div i{
+  color: lightcoral;
+  font: 14px;
 }
 
-.lists li button{
-  position: absolute;
-  top:0.75em;
-  right:1em;
-}
-
-h1 button{
-    margin-left: 1em;
-    padding: 0.1em; 
-    width: 3em;
-    background-color: lightgreen;
-    border: 0px;
-    color: #FFF;
-    cursor:pointer
-}
-
-i{
-  font-size: 12px;
-}

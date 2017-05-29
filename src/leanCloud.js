@@ -15,13 +15,22 @@ export function signUpApi(email,username, password, successFn, errorFn){  //注�
   user.setPassword(password);
   user.setEmail(email);
   //设置邮箱
-  user.signUp().then(function (loginedUser) { //注册成功返回当前用户信息
+  if(username.length>3){
+    if(password.length>=6){
+       user.signUp().then(function (loginedUser) { //注册成功返回当前用户信息
       let user = getUserFromAVUser(loginedUser)
       console.log('注册成功')
       successFn(user)
   }, function (error) {
       errorFn(error)
   });
+    }else{
+      alert("密码不能小于6个字符")
+    }
+ 
+  }else{
+    alert("用户名必须大于3个字符")
+  }
 }
 
 export function signInApi(username, password, successFn, errorFn){ //登录
