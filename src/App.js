@@ -85,7 +85,7 @@ class App extends Component {
   }
   componentWillMount(){
     this.fetchTodos() //执行获取数据
-    initReactFastclick();
+    // initReactFastclick();
     
   }
   componentDidUpdate(){

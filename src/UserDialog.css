@@ -50,7 +50,7 @@ nav label>i {
     margin-right: 5px;
 }
 
-nav input[type="radio"]:checked+label {
+.UserDialog nav input[type="radio"]:checked+label {
     background: linear-gradient(to bottom, #1196EE, #1A6BE6);
 }
 
