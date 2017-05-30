@@ -24,7 +24,7 @@ class UserDialog extends Component {
     e.preventDefault()
     let {email,username, password} = this.state.formData
     let success = (user) => {
-      this.props.onSignUp(user)
+      this.props.onSignUp(user,'SignUp')
     }
 
     signUpApi(email,username, password, success, error)
@@ -33,7 +33,7 @@ class UserDialog extends Component {
     e.preventDefault()
     let {username, password} = this.state.formData
     let success = (user) => {
-      this.props.onSignIn(user)
+      this.props.onSignIn(user,'SignIn')
     }
 
     signInApi(username, password, success, error)
