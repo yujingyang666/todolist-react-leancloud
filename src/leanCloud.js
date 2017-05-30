@@ -16,8 +16,8 @@ export function signUpApi(email, username, password, successFn, errorFn) { //注
   user.setEmail(email);
   //设置邮箱
   if (/^\w+@[\w-]+\.\w+(\.\w+)?$/.test(email)) {
-    if (username.length > 3) {
-      if (password.length >= 6) {
+    if (/\w{3,}/.test(username)) {
+      if (/\w{6,}/.test(password)) {
         user.signUp().then(function (loginedUser) { //注册成功返回当前用户信息
           let user = getUserFromAVUser(loginedUser)
           console.log('注册成功')

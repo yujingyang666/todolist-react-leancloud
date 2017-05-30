@@ -67,10 +67,10 @@ class App extends Component {
   }
 
   onSignUpOronSignIn(user,UpOrIn){   //注册或登录后更新本地用户信息、数据
-     if(UpOrIn==='SignUp'){this.saveTodos();console.log('执行了UpOrIn')}
+     if(UpOrIn==='SignUp'){this.saveTodos()}
      let stateCopy = JSON.parse(JSON.stringify(this.state))
      stateCopy.user = user
-     this.setState(stateCopy,()=>{this.fetchTodos()})  
+     this.setState(stateCopy,this.fetchTodos)  
      //this.fetchTodos() //执行获取数据
      
      
@@ -112,7 +112,7 @@ class App extends Component {
       }
     }
     stateCopy.todoList.id=this.state.todoList.id
-    this.setState(stateCopy,() => {this.updataTodos()})
+    this.setState(stateCopy,this.updataTodos)
     
   }
 
@@ -185,7 +185,7 @@ class App extends Component {
       stateCopy.fetchLock=true;
       stateCopy.todoList.id = todo.id 
       this.setState(stateCopy)
-      console.log('保存成功');
+      // console.log('保存成功');
     },function(error){
       alert('保存失败')
     })
@@ -221,9 +221,9 @@ fetchTodos(){
         stateCopy.todoList.id = id 
         stateCopy.fetchLock=true;
         this.setState(stateCopy)
-        console.log("fetchLock:"+this.state.fetchLock)
+        // console.log("fetchLock:"+this.state.fetchLock)
       },function(error){
-        console.error(error)
+        // console.error(error)
       })
     }
   }
