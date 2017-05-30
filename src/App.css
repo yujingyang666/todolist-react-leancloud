@@ -119,14 +119,12 @@
 .lists input[type="checkbox"]:before{
   content: "\e720";
   position: absolute;
-  top:-1px;
   background-color: #FFFACD;
   color: #1196EE;
 }
 .lists input[type="checkbox"]:after{
   content: "\e721";
   position: absolute;
-  top:-1px;
   display: none;
   background-color: #FFFACD;
   color: #1196EE;
