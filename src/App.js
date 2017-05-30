@@ -5,8 +5,8 @@ import TodoItem from './TodoItem'
 import 'normalize.css'
 import UserDialog from './UserDialog'
 import AV,{getCurrentUser,signOut} from './leanCloud'
-import initReactFastclick from 'react-fastclick';
-initReactFastclick();
+// import initReactFastclick from 'react-fastclick';
+// initReactFastclick();
 class App extends Component {
   constructor(props){
      super(props)

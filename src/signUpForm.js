@@ -18,7 +18,7 @@ export default class SignUpform extends Component {
           <label><i className="iconfont icon-wode"></i>用户名</label>
           <input
             type="text"
-            placeholder="请输入大于3个字符的用户名"
+            placeholder="请输入长度大于3的用户名"
             value={this.props.formData.username}
             onChange={this.props.onChange.bind(null, 'username')}/>
             <span className="bar"/>
@@ -27,7 +27,7 @@ export default class SignUpform extends Component {
           <label><i className="iconfont icon-unlock"></i>密码</label>
           <input
             type="password"
-            placeholder="请输入不小于6个字符的密码"
+            placeholder="请输入6位以上的密码"
             value={this.props.formData.password}
             onChange={this.props.onChange.bind(null, 'password')}/>
             <span className="bar"/>
