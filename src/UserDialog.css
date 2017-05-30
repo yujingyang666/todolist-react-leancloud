@@ -141,15 +141,15 @@ nav label>i {
 }
 
 ::-webkit-input-placeholder{
-    font-size: 0.8em;
+    font-size: 0.9em;
     color: #AAA;
 }
 :-ms-input-placeholder{
-    font-size: 0.8em;
+    font-size:0.9em;
     color: #AAA;
 }
 
 ::-moz-placeholder{
-    font-size: 0.8em;
+    font-size: 0.9em;
     color: #AAA;
 }
