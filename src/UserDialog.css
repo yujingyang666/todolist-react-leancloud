@@ -71,6 +71,7 @@ nav label>i {
     width: 100%;
     margin-bottom: 1em;
     flex-wrap: wrap;
+    position: relative;
 }
 
 .row label {
@@ -78,6 +79,7 @@ nav label>i {
     width: 100%;
     font-size: 1.2em;
     margin-bottom: 0.5em;
+    
 }
 
 .row label i {
@@ -92,13 +94,29 @@ nav label>i {
     line-height: 1em;
     outline: none;
     border: 0px;
-    border-bottom: 1px solid #DDD;
+    
     transition: 0.5s;
     background-color: transparent;
+    
 }
 
-.row input:focus {
-    border-bottom: 1px solid #1196EE;
+
+.row .bar{
+    width: 100%;;
+    height:1px;
+    background-color: #DDD;
+    position: relative;
+}
+.row .bar:after{
+    content: "";
+    width: 0;
+    height: 1px;
+    background-color: #1196EE;
+    transition: all 0.2s;
+    position: absolute;
+}
+.row input:focus+.bar:after{
+    width: 100%;
 }
 
 .row button {
@@ -120,4 +138,18 @@ nav label>i {
 .forgotPassword nav label {
     width: 100%;
     background: linear-gradient(to bottom, #1196EE, #1A6BE6);
+}
+
+::-webkit-input-placeholder{
+    font-size: 0.7em;
+    color: #AAA;
+}
+:-ms-input-placeholder{
+    font-size: 0.7em;
+    color: #AAA;
+}
+
+::-moz-placeholder{
+    font-size: 0.7em;
+    color: #AAA;
 }

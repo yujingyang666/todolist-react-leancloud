@@ -86,11 +86,11 @@
 }
 
 .condition div span{
-  font-size: 1.2em;
-  color: #888;
+  font-size: 1em;
+  color: #1196EE;
 }
 .condition div i{
-  color: lightgreen;
+  color: #1196EE;
   
 }
 .lists {
@@ -106,6 +106,37 @@
   flex-grow: 1;
   margin-bottom: 0.5em;
   background-color: #FFFACD;
+}
+.lists li div{
+  display: flex;
+  align-items: center;
+}
+
+.lists input[type="checkbox"]{
+  position: relative;
+  outline: none;
+}
+.lists input[type="checkbox"]:before{
+  content: "\e720";
+  position: absolute;
+  top:-1px;
+  background-color: #FFFACD;
+  color: #1196EE;
+}
+.lists input[type="checkbox"]:after{
+  content: "\e721";
+  position: absolute;
+  top:-1px;
+  display: none;
+  background-color: #FFFACD;
+  color: #1196EE;
+}
+
+.lists input[type="checkbox"]:checked:before{
+  display: none;
+}
+.lists input[type="checkbox"]:checked:after{
+  display: inline-block;
 }
 .lists li div{
   padding: 0 0.5em;

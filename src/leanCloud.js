@@ -67,7 +67,7 @@ export function signOut(){
 
 export function sendPasswordResetEmail(email,successFn,errorFn){
     AV.User.requestPasswordReset(email).then(function (success) {
-      successFn.call() 
+      alert("发送成功，请注意查收邮件")
   }, function (error) {
      errorFn.call(null, error)
   });

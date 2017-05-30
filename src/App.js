@@ -6,7 +6,7 @@ import 'normalize.css'
 import UserDialog from './UserDialog'
 import AV,{getCurrentUser,signOut} from './leanCloud'
 import initReactFastclick from 'react-fastclick';
-
+initReactFastclick();
 class App extends Component {
   constructor(props){
      super(props)
@@ -85,7 +85,7 @@ class App extends Component {
   }
   componentWillMount(){
     this.fetchTodos() //执行获取数据
-    // initReactFastclick();
+    // 
     
   }
   componentDidUpdate(){

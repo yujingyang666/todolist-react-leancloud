@@ -12,8 +12,9 @@ export default class ForgotPassword extends Component {
           
            <div className="row">
              <label><i className="iconfont icon-mail_fill"></i>邮箱</label>
-             <input type="text" placeholder="E-mail" value={this.props.formData.email}
+             <input type="text" placeholder="请输入你注册时用的邮箱" value={this.props.formData.email}
                onChange={this.props.onChange.bind(null, 'email')}/>  
+               <span className="bar"/>
            </div>
            <div className="row actions">
              <button type="submit">发送重置邮件</button>

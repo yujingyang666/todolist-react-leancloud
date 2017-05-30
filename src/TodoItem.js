@@ -4,13 +4,14 @@ class TodoItem extends Component {
     render (){
         return (
         <div>
-            <label className="iconfont">
-            <input type="checkbox" 
+            
+            <input type="checkbox" className="iconfont"
             checked={this.props.todo.status==='completed'}
-            onChange={this.toggle.bind(this)}/></label>
-            <input type="text" 
+            onChange={this.toggle.bind(this)}/>
+            <input type="text"  
             value={this.props.todo.title} data-value={this.props.todo.title} onChange={this.props.onChange}/>
             <i className="iconfont icon-guanbi2fill" onClick={this.del.bind(this)}></i>
+            
         </div>
         )
     }

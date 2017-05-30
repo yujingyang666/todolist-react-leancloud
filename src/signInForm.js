@@ -11,6 +11,7 @@ export default class SignInform extends Component {
             placeholder="username"
             value={this.props.formData.username}
             onChange={this.props.onChange.bind(null, 'username')}/>
+            <span className="bar"/>
         </div>
         <div className="row">
           <label><i className="iconfont icon-unlock"></i>密码</label>
@@ -19,6 +20,7 @@ export default class SignInform extends Component {
              placeholder="password"
             value={this.props.formData.password}
             onChange={this.props.onChange.bind(null, 'password')}/>
+            <span className="bar"/>
         </div>
         <div className="row actions">
           <button type="submit">登录</button>
