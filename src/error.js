@@ -9,6 +9,12 @@ export function error(error){
           case 202:
           alert('用户名已存在')
           break
+          case 203:
+          alert('电子邮箱已经被占用')
+          break
+          case 205:
+          alert('找不到电子邮箱地址对应的用户')
+          break
           case 201:
           alert('密码不能为空')
           break

@@ -11,6 +11,7 @@ class App extends Component {
   constructor(props){
      super(props)
      this.state = {
+       fetchLock:false,
        user: getCurrentUser() || {},
        newTodo:'',
        todoList:[]
@@ -67,11 +68,13 @@ class App extends Component {
 
   onSignUpOronSignIn(user){   //注册或登录后更新本地用户信息、数据
      //this.state.user = user
-     console.log('onSignUpOronSignIn:'+user)
      let stateCopy = JSON.parse(JSON.stringify(this.state))
      stateCopy.user = user
      this.setState(stateCopy)  
      this.fetchTodos() //执行获取数据
+    //  this.saveOrUpdateTodos()
+
+
   }
 
 
@@ -80,7 +83,8 @@ class App extends Component {
     signOut()
     let stateCopy = JSON.parse(JSON.stringify(this.state))
     stateCopy.user = {}
-    stateCopy.todoList =[]  //登出后需要清除客户端界面数据
+    stateCopy.todoList =[] 
+    stateCopy.fetchLock=false; //登出后需要清除客户端界面数据
     this.setState(stateCopy) 
   }
   componentWillMount(){
@@ -114,7 +118,7 @@ class App extends Component {
   }
 
    addTodo(e){  //8、onSub触发时，执行
-    if(e.target.value.length>0){
+    if(e.target.value.length>0 & this.state.fetchLock===true){
       this.state.todoList.push({
         // id:idMarker(), 
         title:e.target.value,
@@ -125,8 +129,9 @@ class App extends Component {
         newTodo:'',  //把newTodo清零  newTodo -> TodoInput content -> TodoInput.js的value
         todoList:this.state.todoList
       })
+      this.saveOrUpdateTodos()
     }
-    this.saveOrUpdateTodos() //在新增加todo时，执行更新或者保存数据
+     //在新增加todo时，执行更新或者保存数据
   }
 
   toggle(e,todo){
@@ -212,7 +217,9 @@ fetchTodos(){
         let stateCopy = JSON.parse(JSON.stringify(this.state))
         stateCopy.todoList = JSON.parse(avAlltodos.attributes.content)
         stateCopy.todoList.id = id 
+        stateCopy.fetchLock=true;
         this.setState(stateCopy)
+        console.log(this.state.fetchLock)
       },function(error){
         console.error(error)
       })

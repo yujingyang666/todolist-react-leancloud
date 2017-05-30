@@ -24,7 +24,6 @@ class UserDialog extends Component {
     e.preventDefault()
     let {email,username, password} = this.state.formData
     let success = (user) => {
-      console.log('注册成功')
       this.props.onSignUp(user)
     }
 
@@ -51,7 +50,7 @@ class UserDialog extends Component {
   }
   resetPassword(e){
     e.preventDefault()
-    sendPasswordResetEmail(this.state.formData.email)
+    sendPasswordResetEmail(this.state.formData.email,error)
   }
   returnToSignIn(){
     let stateCopy = JSON.parse(JSON.stringify(this.state))
