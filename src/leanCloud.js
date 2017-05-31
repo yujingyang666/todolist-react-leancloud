@@ -19,8 +19,7 @@ export function signUpApi(email, username, password, successFn, errorFn) { //注
     if (/\w{3,}/.test(username)) {
       if (/\w{6,}/.test(password)) {
         user.signUp().then(function (loginedUser) { //注册成功返回当前用户信息
-          let user = getUserFromAVUser(loginedUser)
-          console.log('注册成功')
+          let user = getUserFromAVUser(loginedUser) 
           successFn(user)
         }, function (error) {
           errorFn(error)
@@ -42,7 +41,6 @@ export function signUpApi(email, username, password, successFn, errorFn) { //注
 export function signInApi(username, password, successFn, errorFn) { //登录
   AV.User.logIn(username, password).then(function (loginedUser) {
     let user = getUserFromAVUser(loginedUser)
-    console.log('登录成功')
     successFn(user)
   }, function (error) {
     errorFn(error)

@@ -182,7 +182,6 @@ class App extends Component {
       stateCopy.fetchLock=true;
       stateCopy.todoList.id = todo.id 
       this.setState(stateCopy)
-      console.log('成功执行了新建保存');
     },function(error){
       alert('保存失败')
     })
@@ -194,7 +193,6 @@ class App extends Component {
       let avTodos = AV.Object.createWithoutData('Todoslist',this.state.todoList.id)
       avTodos.set('content',dataString)
       avTodos.save().then(()=>{
-       console.log("成功更新了")
       })
     }
 //更新或者保存数据，分别在数据发生改变时调用，数据存在就更新，数据不存在就保存
