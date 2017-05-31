@@ -25,6 +25,7 @@ class App extends Component {
             onToggle={this.toggle.bind(this)}
             onDel={this.del.bind(this)}
             onChange={this.changeItem.bind(this)}
+            onBlur={this.updataTodos.bind(this)} 
             />
             
             </li>
@@ -37,6 +38,7 @@ class App extends Component {
             onToggle={this.toggle.bind(this)}
             onDel={this.del.bind(this)}
             onChange={this.changeItem.bind(this)}
+            onBlur={this.updataTodos.bind(this)} 
             />
             </li>
       )
@@ -108,7 +110,7 @@ class App extends Component {
       }
     }
     stateCopy.todoList.id=this.state.todoList.id
-    this.setState(stateCopy,this.updataTodos)
+    this.setState(stateCopy)
     
   }
 
@@ -164,6 +166,7 @@ class App extends Component {
     }
     this.setState(stateCopy,()=>{this.saveOrUpdateTodos()})
   }
+
 
 //================================================================================================
    //保存数据

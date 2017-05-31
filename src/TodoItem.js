@@ -9,7 +9,8 @@ class TodoItem extends Component {
             checked={this.props.todo.status==='completed'}
             onChange={this.toggle.bind(this)}/>
             <input type="text"  
-            value={this.props.todo.title} data-value={this.props.todo.title} onChange={this.props.onChange}/>
+            value={this.props.todo.title} data-value={this.props.todo.title} onChange={this.props.onChange}
+            onBlur={this.blur.bind(this)} onKeyPress={this.enter.bind(this)}/>
             <i className="iconfont icon-guanbi2fill" onClick={this.del.bind(this)}></i>
             
         </div>
@@ -21,11 +22,15 @@ class TodoItem extends Component {
     toggle(e){
         this.props.onToggle(e,this.props.todo)
     }
-    // enter(e){
-    //     if(e.key ==='Enter'){
-    //         this.props.Enter(e) 
-    //     }
-    // }
+    blur(e){
+        e.stopPropagation()
+        this.props.onBlur(e)
+    }
+    enter(e){
+        if(e.key ==='Enter'){
+            e.target.blur()
+        }
+    }
   
 }
 
