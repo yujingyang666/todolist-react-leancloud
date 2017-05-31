@@ -71,10 +71,6 @@ class App extends Component {
      let stateCopy = JSON.parse(JSON.stringify(this.state))
      stateCopy.user = user
      this.setState(stateCopy,this.fetchTodos)  
-     //this.fetchTodos() //执行获取数据
-     
-     
-
 
   }
 
@@ -149,29 +145,30 @@ class App extends Component {
 
   cleartodos(){
     let stateCopy = JSON.parse(JSON.stringify(this.state))
+    stateCopy.todoList.id=this.state.todoList.id
     for(let i=0;i<stateCopy.todoList.length;i++){
       if(stateCopy.todoList[i].status!=="completed"){
         stateCopy.todoList[i].deleted=true
       }
     }
-    this.setState(stateCopy)
-    this.saveOrUpdateTodos()
+    this.setState(stateCopy,()=>{this.saveOrUpdateTodos()})
   }
 
   clearcompleteds(){
     let stateCopy = JSON.parse(JSON.stringify(this.state))
+    stateCopy.todoList.id=this.state.todoList.id
     for(let i=0;i<stateCopy.todoList.length;i++){
       if(stateCopy.todoList[i].status==="completed"){
         stateCopy.todoList[i].deleted=true
       }
     }
-    this.setState(stateCopy)
-    this.saveOrUpdateTodos()
+    this.setState(stateCopy,()=>{this.saveOrUpdateTodos()})
   }
 
 //================================================================================================
    //保存数据
   saveTodos(){
+
     let dataString = JSON.stringify(this.state.todoList)
     var  AVTodos = AV.Object.extend('Todoslist');
     var avTodos = new AVTodos();
@@ -185,7 +182,7 @@ class App extends Component {
       stateCopy.fetchLock=true;
       stateCopy.todoList.id = todo.id 
       this.setState(stateCopy)
-      // console.log('保存成功');
+      console.log('成功执行了新建保存');
     },function(error){
       alert('保存失败')
     })
@@ -197,7 +194,7 @@ class App extends Component {
       let avTodos = AV.Object.createWithoutData('Todoslist',this.state.todoList.id)
       avTodos.set('content',dataString)
       avTodos.save().then(()=>{
-       
+       console.log("成功更新了")
       })
     }
 //更新或者保存数据，分别在数据发生改变时调用，数据存在就更新，数据不存在就保存

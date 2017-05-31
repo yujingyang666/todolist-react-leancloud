@@ -91,7 +91,7 @@
 }
 .condition div i{
   color: #1196EE;
-  
+  cursor: pointer;
 }
 .lists {
   display: flex;
@@ -165,5 +165,6 @@
 .lists li div i{
   color: lightcoral;
   font: 14px;
+  cursor: pointer;
 }
 
