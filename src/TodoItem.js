@@ -12,7 +12,6 @@ class TodoItem extends Component {
             value={this.props.todo.title} data-value={this.props.todo.title} onChange={this.props.onChange}
             onBlur={this.blur.bind(this)} onKeyPress={this.enter.bind(this)}/>
             <i className="iconfont icon-guanbi2fill" onClick={this.del.bind(this)}></i>
-            
         </div>
         )
     }
@@ -31,7 +30,6 @@ class TodoItem extends Component {
             e.target.blur()
         }
     }
-  
 }
 
 export default TodoItem;

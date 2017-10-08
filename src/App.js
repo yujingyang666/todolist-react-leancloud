@@ -109,7 +109,7 @@ class App extends Component {
         stateCopy.todoList[key].title=e.target.value
       }
     }
-    stateCopy.todoList.id=this.state.todoList.id
+    stateCopy.todoList.id=this.state.todoList.id  //state.todoList是数组，state.todoList.id语法上不规范，无法拷贝，需要赋值
     this.setState(stateCopy)
     
   }

@@ -58,6 +58,7 @@ class UserDialog extends Component {
     this.setState(stateCopy)
   }
   
+  
   render() {
     return (
       <div className="UserDialog-Wrapper">
